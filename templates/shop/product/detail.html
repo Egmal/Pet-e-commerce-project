@@ -1,0 +1,21 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>MyPetShop:{{  product.name }}</title>
+{% endblock %}
+
+{% block content %}
+    <img alt="no image" src="{% if product.image %}{{ product.image.url }}{% else %}
+                {% static "img/no_image.png" %}{% endif %}">
+    <h3>{{ product.name }}</h3>
+    <p>${{ product.price }}</p>
+    <form action="{% url "cart:cart_add" product.id %}" method="post">
+        {{ cart_product_form }}
+        {% csrf_token %}
+        <input type="submit" value="Add to cart">
+    </form>
+    <p>{{ product.description|linebreaks}}</p>
+
+{% endblock content %}
+
