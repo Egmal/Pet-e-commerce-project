@@ -1,36 +1,48 @@
 <!doctype html>
+{% load static %}
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-1/css/all.css">
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <title>
         {% block title %}
-    {% endblock %}
+        {% endblock %}
     </title>
 </head>
+
 <body>
 
-<header>
-    <a href="/"><h1>My pet shop</h1></a>
-    {% with total_items=cart|length %}
-    {% if cart|length > 0 %}
-        Your cart:
-            <a href="{% url "cart:cart_detail" %}">
-                {{ total_items }} item{{ total_items|pluralize }},
-                ${{ cart.get_total_price }}
-            </a>
-    {% else %}
-        Your cart is empty.
-    {% endif %}
-    {% endwith %}
-</header>
+    <header>
 
-{% block content %}
+        <div class="navbar" id="topnav">
+            <a href="/"><i class="fas fa-paw"></i> Pet shop </a>
+            <a href="{% url "cart:cart_detail" %}" class="cart">
+
+                <i class="fas fa-shopping-cart">
+                    {% with total_items=cart|length %}
+                    {% if cart|length > 0 %}
+                    <span class="item-counter">{{ cart|length }}</span>
+                    {% endif %}
+                    {% endwith %}
+                </i></a>
+        </div>
+    </header>
+    <main>
+        {% block content %}
 
 
-{% endblock %}
+        {% endblock %}
+    </main>
+    <footer>
 
+    </footer>
+    <script src="{% static 'js/base.js' %}"></script>
 </body>
+
 </html>

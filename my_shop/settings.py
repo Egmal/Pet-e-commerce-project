@@ -36,19 +36,28 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'debug_toolbar',
     'shop.apps.ShopConfig',
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
+    'payment.apps.PaymentConfig',
 ]
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+]
+
+INTERNAL_IPS = [
+    '127.0.0.1',
 ]
 
 ROOT_URLCONF = 'my_shop.urls'
@@ -127,4 +136,20 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+CELERY_BROKER_URL = 'amqp://shopuser:123456qq@localhost:5672/shophost'
 
+# Braintree config.
+from .secrets import BRAINTREE_PRIVATE_KEY, BRAINTREE_PUBLIC_KEY, BRAINTREE_MERCHANT_ID
+
+BRAINTREE_MERCHANT_ID = BRAINTREE_MERCHANT_ID
+BRAINTREE_PUBLIC_KEY = BRAINTREE_PUBLIC_KEY
+BRAINTREE_PRIVATE_KEY = BRAINTREE_PRIVATE_KEY
+
+from braintree import Configuration, Environment
+
+Configuration.configure(
+    Environment.Sandbox,
+    BRAINTREE_MERCHANT_ID,
+    BRAINTREE_PUBLIC_KEY,
+    BRAINTREE_PRIVATE_KEY
+)

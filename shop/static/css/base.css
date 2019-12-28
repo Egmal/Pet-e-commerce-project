@@ -1,0 +1,28 @@
+body{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.navbar{
+  display: flex;
+  justify-content: space-between;
+  background-color: #000067;
+
+}
+.navbar a{
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: antiquewhite;
+  padding: 0.5em 0.5em;
+}
+.navbar .cart{
+  display: flex;
+  align-items: center;
+}
+.navbar .item-counter{
+  color: #a40000;
+}
+main{
+  flex-grow: 1;
+}
+
