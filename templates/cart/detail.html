@@ -1,13 +1,16 @@
 {% extends "shop/base.html" %}
 {% load i18n %}
 {% load static %}
-
+{% block head %}
+    <link rel="stylesheet" href=" {% static 'css/cart.css' %}">
+{% endblock %}
 {% block title %}
     {% trans "Your shopping cart" %}
 {% endblock %}
 
 {% block content %}
     <h1>{% trans "Your shopping cart" %}</h1>
+   <div class="cart-table">
     <table class="cart">
         <thead>
             <tr>
@@ -66,6 +69,7 @@
 
         </tbody>
     </table>
+   </div>
     {% if recommended_products %}
         <div class="recommendations cart">
             <h3>{% trans "People who bought this also bought" %}</h3>
