@@ -32,6 +32,7 @@ def payment_process(request):
 
 
 def payment_done(request):
+    request.session['coupon_id'] = None
     return render(request, 'payment/done.html')
 
 

@@ -4,12 +4,19 @@ from .forms import OrderCreateForm
 from .models import OrderItem, Order
 from cart.cart import Cart
 from .tasks import order_created
+from django.views.generic import View
 from django.contrib.admin.views.decorators import staff_member_required
 
 
-def order_create(request):
-    cart = Cart(request)
-    if request.method == 'POST':
+class OrderView(View):
+    form = OrderCreateForm()
+
+    def get(self, request):
+        cart = Cart(request)
+        return render(request, 'orders/order/create.html', {'cart': cart, 'form': self.form})
+
+    def post(self, request):
+        cart = Cart(request)
         form = OrderCreateForm(request.POST)
         if form.is_valid():
             order = form.save(commit=False)
@@ -28,11 +35,6 @@ def order_create(request):
             order_created.delay(order.id)
             request.session['order_id'] = order.id
             return redirect(reverse('payment:process'))
-    else:
-        form = OrderCreateForm()
-    return render(request,
-                  'orders/order/create.html',
-                  {'cart': cart, 'form': form})
 
 
 @staff_member_required

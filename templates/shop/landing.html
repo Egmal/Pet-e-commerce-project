@@ -1,0 +1,37 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% load i18n  parler_tags %}
+
+{% block content %}
+  <div class="container">
+
+    <!-- Jumbotron Header -->
+    <header class="jumbotron my-4">
+      <h1 class="display-3">Welcome To PetShop!</h1>
+      <p class="lead">My Django Pet Project</p>
+      <a href="{% url 'shop:product_list' %}" class="btn btn-primary btn-lg">{% trans "GoTo Product List" %}</a>
+    </header>
+
+    <!-- Page Features -->
+    <div class="row text-center">
+    {% for product in last_products %}
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card h-100">
+          <img class="card-img-top" src="{% if product.image %}{{ product.image.url }}{%else %}{% static 'img/no_image.png' %}{% endif %}" alt="">
+          <div class="card-body">
+            <h4 class="card-title">{{ product.name }}</h4>
+            <p class="card-text">${{ product.price }}</p>
+          </div>
+          <div class="card-footer">
+            <a href="{{ product.get_absolute_url }}" class="btn btn-primary">{% trans "more" %}</a>
+          </div>
+        </div>
+      </div>
+        {% endfor %}
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+
+{% endblock %}

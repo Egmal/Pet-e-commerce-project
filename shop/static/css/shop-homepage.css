@@ -1,0 +1,44 @@
+
+body{
+  padding-top: 56px;
+}
+
+a{
+  color: black;
+}
+.content-container{
+  padding-top: 2em;
+}
+.side-container{
+  max-height: 30em;
+  margin-bottom: 0.5em;
+}
+
+.side-container *{
+  margin-bottom: 0.5em;
+}
+
+.card{
+  background-color: rgb(243, 240, 235);
+}
+
+.card-body{
+  background-color: white;
+}
+
+.card img{
+  width: 100%;
+}
+
+.detail-container{
+  margin: auto;
+}
+
+.product-detail-form{
+  width: 55%;
+}
+
+.cart-image{
+  width: 50%;
+  height: auto;
+}

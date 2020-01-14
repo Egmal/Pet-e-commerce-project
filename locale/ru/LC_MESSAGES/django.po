@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-03 22:59+0200\n"
-"PO-Revision-Date: 2020-01-03 22:00+0124\n"
+"POT-Creation-Date: 2020-01-14 23:53+0200\n"
+"PO-Revision-Date: 2020-01-14 22:55+0124\n"
 "Last-Translator: b'  <>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 "X-Translated-Using: django-rosetta 0.9.3\n"
 
-#: cart/forms.py:8 templates/cart/detail.html:19
+#: cart/forms.py:8 templates/cart/detail.html:20
 msgid "Quantity"
 msgstr "Количество"
 
@@ -27,11 +27,11 @@ msgstr "Количество"
 msgid "Coupon"
 msgstr "номер купона"
 
-#: my_shop/settings.py:126
+#: my_shop/settings.py:131
 msgid "English"
 msgstr "Английский"
 
-#: my_shop/settings.py:127
+#: my_shop/settings.py:132
 msgid "Russian"
 msgstr "Русский"
 
@@ -59,71 +59,71 @@ msgstr "почтовый индекс"
 msgid "city"
 msgstr "город"
 
-#: templates/cart/detail.html:8 templates/cart/detail.html:12
+#: templates/cart/detail.html:7 templates/cart/detail.html:11
 msgid "Your shopping cart"
 msgstr "Ваша корзина"
 
-#: templates/cart/detail.html:17
+#: templates/cart/detail.html:18
 #: venv/lib/python3.7/site-packages/django/db/models/fields/files.py:360
 msgid "Image"
 msgstr "Изображение"
 
-#: templates/cart/detail.html:18
+#: templates/cart/detail.html:19
 msgid "Product"
 msgstr "Товар"
 
-#: templates/cart/detail.html:20 templates/cart/detail.html:43
+#: templates/cart/detail.html:21 templates/cart/detail.html:46
 msgid "Remove"
 msgstr "Удалить"
 
-#: templates/cart/detail.html:21
-msgid "Unit price"
-msgstr "Цена за штуку"
-
 #: templates/cart/detail.html:22
-msgid "Price"
+msgid "Unit price"
 msgstr "Цена"
 
-#: templates/cart/detail.html:39
-msgid "Update"
-msgstr "Обновлено"
+#: templates/cart/detail.html:23
+msgid "Price"
+msgstr "Итого"
 
-#: templates/cart/detail.html:52
+#: templates/cart/detail.html:42
+msgid "Update"
+msgstr "Обновить"
+
+#: templates/cart/detail.html:55
 msgid "Subtotal"
 msgstr "Промежуточная цена"
 
-#: templates/cart/detail.html:57
-#, python-format
+#: templates/cart/detail.html:60
+#, fuzzy, python-format
+#| msgid ""
+#| "\n"
+#| "                    <td>\"%(code)s\" coupon (%(discount)s%% off)</td>\n"
+#| "                "
 msgid ""
 "\n"
 "                    <td>\"%(code)s\" coupon (%(discount)s%% off)</td>\n"
-"                "
+"                    "
 msgstr ""
 "\n"
 "                    <td>\"%(code)s\" купон (%(discount)s%% off)</td>\n"
 "                "
 
-#: templates/cart/detail.html:65 templates/orders/order/create.html:35
+#: templates/cart/detail.html:68 templates/orders/order/create.html:35
 msgid "Total"
 msgstr "Всего"
 
-#: templates/cart/detail.html:75
-msgid "People who bought this also bought"
-msgstr ""
-
-#: templates/cart/detail.html:87
+#: templates/cart/detail.html:82
 msgid "Apply a coupon"
 msgstr "Применить купон"
 
-#: templates/cart/detail.html:91
+#: templates/cart/detail.html:83
 msgid "Apply"
 msgstr "Применить"
 
-#: templates/cart/detail.html:95
+#: templates/cart/detail.html:88
 msgid "Continue shopping"
 msgstr "Продолжить покупки"
 
-#: templates/cart/detail.html:96 templates/orders/order/create.html:4
+#: templates/cart/detail.html:89 templates/orders/order/create.html:4
 #: templates/orders/order/create.html:8
 msgid "Checkout"
 msgstr "Оформление заказа"
@@ -151,13 +151,25 @@ msgstr "Благодарим вас за ваш заказ!"
 msgid "Your order has been successfully completed. Your order number is"
 msgstr "Ваш заказ принят на обработку. Ваш номер заказа"
 
-#: templates/shop/base.html:57
-msgid "Categories:"
-msgstr "Категории:"
+#: templates/shop/base.html:42
+msgid "Language"
+msgstr "Язык"
 
-#: templates/shop/product/detail.html:17
+#: templates/shop/landing.html:12
+msgid "GoTo Product List"
+msgstr "Перейти к каталогу товаров"
+
+#: templates/shop/landing.html:26
+msgid "more"
+msgstr "больше"
+
+#: templates/shop/product/product_detail.html:46
 msgid "Add to cart"
 msgstr "Добавить в корзину"
+
+#: templates/shop/product/product_list.html:13
+msgid "Categories:"
+msgstr "Категории:"
 
 #: venv/lib/python3.7/site-packages/django/contrib/messages/apps.py:7
 msgid "Messages"

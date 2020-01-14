@@ -1,0 +1,52 @@
+{% extends 'shop/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}
+MyPetShop:{{  product.name }}
+{% endblock %}
+
+{% block content %}
+
+
+<div class="col-lg-8 detail-container">
+  <div class="card mt-4">
+    <img class="card-img-top img-fluid"
+      src="{% if product.image %}{{ product.image.url }}{% else %} {% static 'img/no_image.png' %}{% endif %}" alt="">
+    <div class="card-body">
+      <h3 class="card-title">{{ product.name }}</h3>
+      <h4>${{ product.price }}</h4>
+      <p class="card-text">{{ product.description|linebreaks}}</p>
+      <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+      4.0 stars
+    </div>
+  </div>
+
+  <!-- /.card -->
+
+
+
+  {% endblock content %}
+
+  {% block aside %}
+
+  <div class="product-detail-form">
+    <form action="{% url 'cart:cart_add' product.id %}" method="post">
+          <label for="id_quantity">Количество:</label>
+         
+          <select class="form-control form-control-sm" name="quantity" id="id_quantity">
+            {% for option in cart_product_form.quantity %}
+              {{option}}
+            {% endfor %}
+          </select>
+       
+        
+          <input type="hidden" name="update" value="False" id="id_update">
+          {% csrf_token %}
+          <input class="btn btn-primary" type="submit" value="{% trans 'Add to cart' %}">
+    </form>
+  </div>
+
+
+</div>
+{% endblock %}
