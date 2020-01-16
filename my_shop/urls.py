@@ -25,7 +25,7 @@ urlpatterns = i18n_patterns(
     path('coupons/', include('coupons.urls', namespace='coupons')),
     path('payment', include('payment.urls', namespace='payment')),
     path('orders/', include('orders.urls', namespace='orders')),
-    path('cart', include('cart.urls', namespace='cart')),
+    path('cart/', include('cart.urls', namespace='cart')),
     path('', include('shop.urls', namespace='shop')),
 )
 if settings.DEBUG:

@@ -9,15 +9,16 @@ from django.contrib.admin.views.decorators import staff_member_required
 
 
 class OrderView(View):
-    form = OrderCreateForm()
+    form_class = OrderCreateForm
 
     def get(self, request):
         cart = Cart(request)
-        return render(request, 'orders/order/create.html', {'cart': cart, 'form': self.form})
+        form = self.form_class()
+        return render(request, 'orders/order/create.html', {'cart': cart, 'form': form})
 
     def post(self, request):
         cart = Cart(request)
-        form = OrderCreateForm(request.POST)
+        form = self.form_class(request.POST)
         if form.is_valid():
             order = form.save(commit=False)
             if cart.coupon:
