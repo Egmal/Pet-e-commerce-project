@@ -1,7 +1,8 @@
 {% extends "shop/base.html" %}
 {% block title %}Pay by credit card{% endblock %}
 {% block content %}
-<h1>Pay by credit card</h1>
+<div class="col-lg-8 detail-container">
+    <h1>Pay by credit card</h1>
 <form action="." id="payment" method="post">
     <label for="card-number">Card Number</label>
     <div id="card-number" class="field"></div>
@@ -14,10 +15,10 @@
     <input type="submit" value="Pay">
 </form>
 
+</div>
 <script src="https://js.braintreegateway.com/web/3.29.0/js/client.min.js"></script>
 
-<script src="https://js.braintreegateway.com/web/3.29.0/js/hosted-
-fields.min.js"></script>
+<script src="https://js.braintreegateway.com/web/3.29.0/js/hosted-fields.min.js"></script>
 <script>
     var form = document.querySelector('#payment');
     var submit = document.querySelector('input[type="submit"]');

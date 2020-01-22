@@ -13,7 +13,7 @@
     <!-- table -->
     <div class="table-responsive-sm">
         <table class="table table-striped">
-            <thead class="thead-dark"> 
+            <thead class="thead-dark">
                 <tr>
                     <th cope="col">{% trans "Image" %}</th>
                     <th cope="col">{% trans "Product" %}</th>
@@ -35,21 +35,21 @@
                     </td>
                     <td>{{ product.name }}</td>
                     <td>
-                        <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                        <form action="{% url 'cart:cart_add' product_id=product.id %}" method="post">
                             {{ item.update_quantity_form.quantity }}
-                      
+
                             {{ item.update_quantity_form.update }}
                             <input type="submit" value="{% trans 'Update' %}">
                             {% csrf_token %}
                         </form>
                     </td>
-                    <td><a class="text-danger" href="{% url 'cart:cart_remove' product.id %}">{% trans "Remove" %}</a></td>
+                    <td><a class="text-danger" href="{% url 'cart:cart_remove' product_id=product.id %}">{% trans "Remove" %}</a></td>
                     <td class="num">${{ item.price }}</td>
                     <td class="num">${{ item.total_price }}</td>
                 </tr>
                 {% endwith %}
             {% endfor %}
-    
+
             {% if cart.coupon %}
                 <tr class="subtotal">
                     <td>{% trans "Subtotal" %}</td>

@@ -13,7 +13,6 @@ class CartView(View):
         for item in cart:
             item['update_quantity_form'] = CartAddProductForm(initial={'quantity': item['quantity'], 'update': True})
         coupon_apply_form = CouponApplyForm()
-        print(request.session.get('coupon_id'))
         return render(request, 'cart/detail.html', {'cart': cart, 'coupon_apply_form': coupon_apply_form})
 
     def post(self, request, *args, **kwargs):

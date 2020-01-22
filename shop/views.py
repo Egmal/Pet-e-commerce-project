@@ -2,7 +2,7 @@ from parler.views import TranslatableSlugMixin
 from django.shortcuts import get_object_or_404, render
 from .models import Category, Product
 from cart.forms import CartAddProductForm
-from django.views.generic import DetailView, ListView, View
+from django.views.generic import DetailView, View, ListView
 
 
 class ShopLandingView(View):
@@ -11,18 +11,6 @@ class ShopLandingView(View):
         return render(request, 'shop/landing.html', {'last_products': last_products})
 
 
-class ProductListView(ListView):
-    model = Product
-    paginate_by = 5
-    template_name = 'shop/product/product_list.html'
-    context_object_name = 'products'
-
-    def get_context_data(self, *args, **kwargs):
-        context = super().get_context_data()
-        context['categories'] = Category.objects.all()
-        print(self.request.method)
-        return context
-
 
 class ProductListByCategoryView(ListView):
     model = Product
@@ -30,19 +18,20 @@ class ProductListByCategoryView(ListView):
     template_name = 'shop/product/product_list.html'
     context_object_name = 'products'
     category = None
+    language = None 
 
-    def get_queryset(self):
-        language = self.request.LANGUAGE_CODE
+    def get_queryset(self): 
+        self.language = self.request.LANGUAGE_CODE
         category_slug = self.kwargs['category_slug']
-        self.category = get_object_or_404(Category, translations__language_code=language,
+        self.category = get_object_or_404(Category, translations__language_code=self.language,
                                           translations__slug=category_slug)
-        queryset = Product.objects.filter(category=self.category, available=True)
+        queryset = Product.objects.translated(self.language).filter(category=self.category, available=True)
         return queryset
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data()
         context['category'] = self.category
-        context['categories'] = Category.objects.all()
+        context['categories'] = Category.objects.translated(self.language).all()
         return context
 
 

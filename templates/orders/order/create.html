@@ -1,12 +1,12 @@
 {% extends "shop/base.html" %}
 {% load i18n %}
 {% block title %}
-<title>{% trans "Checkout" %}</title>
+{% trans "Checkout" %}
 {% endblock %}
 
 {% block content %}
 <h1>{% trans "Checkout" %}</h1>
-<div class="order-info">
+<div class="col-lg-8 detail-container>
     <h3>{% trans "Your order" %}</h3>
     <ul>
 {% for item in cart %}
@@ -34,7 +34,7 @@
 </ul>
     <p>{% trans "Total" %}: ${{ cart.get_total_price_after_discount|floatformat:"2" }}</p>
 </div>
-<form action="." method="post" class="order-form">
+<form action="." method="post" class="form-group">
     {{ form.as_p }}
     <p><input type="submit" value="{% trans "Place order" %}"></p>
     {% csrf_token %}
