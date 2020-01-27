@@ -7,12 +7,11 @@ from django.views.generic import DetailView, View, ListView
 
 class ShopLandingView(View):
     def get(self, request):
-        last_products = Product.objects.all()[:4]
-        return render(request, 'shop/landing.html', {'last_products': last_products})
+        categories  =  Category.objects.translated(request.LANGUAGE_CODE).all()
+        return render(request, 'shop/landing.html', {'categories': categories})
 
 
-
-class ProductListByCategoryView(ListView):
+class ProductListView(ListView):
     model = Product
     paginate_by = 5
     template_name = 'shop/product/product_list.html'
@@ -20,12 +19,15 @@ class ProductListByCategoryView(ListView):
     category = None
     language = None 
 
-    def get_queryset(self): 
+    def get_queryset(self, category=None):     
         self.language = self.request.LANGUAGE_CODE
-        category_slug = self.kwargs['category_slug']
-        self.category = get_object_or_404(Category, translations__language_code=self.language,
+        if category is None:
+            queryset = Product.objects.translated(self.language).filter(available=True)
+        else:
+            category_slug = self.kwargs['category_slug']
+            self.category = get_object_or_404(Category, translations__language_code=self.language,
                                           translations__slug=category_slug)
-        queryset = Product.objects.translated(self.language).filter(category=self.category, available=True)
+            queryset = Product.objects.translated(self.language).filter(category=self.category, available=True)
         return queryset
 
     def get_context_data(self, *args, **kwargs):
@@ -44,3 +46,4 @@ class ProductDetailView(TranslatableSlugMixin, DetailView):
         context = super().get_context_data(**kwargs)
         context['cart_product_form'] = self.cart_product_form
         return context
+    

@@ -5,13 +5,24 @@
 {% block content %}
   <div class="container">
 
-    <!-- Jumbotron Header -->
     <header class="jumbotron my-6">
       <h1 class="display-3">Welcome To PetShop!</h1>
       <p class="lead">My Django Pet Project</p>
     </header>
 
-    <!-- Page Features -->
+      <div class="row d-flex justify-content-around align-items-center">
+      {% for category in categories  %}
+        <div class="card text-center" style="width: 16rem; margin-bottom: 1em">
+          <div class="card-body">
+          <h5 class="card-title">{{ category.name }}</h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <a href="{{ category.get_absolute_url }}" class="btn btn-primary">{% trans "GoTo Product List" %}</a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    
+
     <div class="row text-center">
     {% for product in last_products %}
       <div class="col-lg-3 col-md-6 mb-4">
@@ -27,10 +38,10 @@
         </div>
       </div>
         {% endfor %}
-
     </div>
-    <!-- /.row -->
 
   </div>
+
+    </div>
 
 {% endblock %}

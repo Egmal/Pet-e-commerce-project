@@ -18,6 +18,10 @@ a{
   margin-bottom: 0.5em;
 }
 
+.product-list-container{
+  min-height: 86vh;
+}
+
 .card{
   background-color: rgb(243, 240, 235);
 }
